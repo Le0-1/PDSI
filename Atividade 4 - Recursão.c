@@ -4,7 +4,7 @@ Curso: Sistemas de Informação Lista 4 - Recursão */
 #include <stdlib.h>
 #include <math.h>
 
-int fat(int n) {
+unsigned fat(int n) {
     if(n==0) {
         return (1);
     }
@@ -29,7 +29,7 @@ long mdcc(int a, int b, int c) {
     return(0);
 }
 
-int fib(n){
+unsigned fib(unsigned n){
     if(n==1 || n==2) {
         return (1);
     }
@@ -38,23 +38,11 @@ int fib(n){
     }
 
 }
-int primo(int a){
-    static int d = 2;
-    if (d == a || a == 2 || a == 1)
-    {
-        return printf("Eh primo");
-        
-    }
-    if (a%d == 0)
-    {
-        return printf("Nao eh primo");
-        
-    }
-    else
-    {
-        d = d + 1;
-        return primo(a);
-    } 
+int primo(int a, int b){
+    if(a==1) return (0);
+    if(b==1) return (1);
+    if(a%b==0) return (0);
+    else primo(a, b - 1);
 }
 int decrescente(int n){
     if(n==0){
@@ -149,7 +137,8 @@ void crescente(int a) {
 }
 
 int main() {
-    int a, b, n;
+    int a, b;
+    unsigned n;
     float c, d;
     printf("Declare a variavel 'a': ");
     scanf("%d", &a);
@@ -164,17 +153,16 @@ int main() {
 
     printf("\n1.A)O fatorial do numero %d eh %d: ", a, fat(a));
     printf("\n1.B)O mdc dos numeros %d e %d eh: %d ", a, b, mdc(a, b));
-    printf("\n1.C)O mdc de 'a', 'n' e 'b' eh: %ld", mdcc(a, b, n));
-    printf("\n1.D)O enesimo termo da serie de fibonacci eh: %d", fib(n));
-    printf("\n1.E)O numero %d eh primo?: ", a); 
-    primo(a);
+    printf("\n1.C)O mdc de %d, %d e %d eh: %u", a, n, b, mdcc(a, b, n));
+    printf("\n1.D)O enesimo termo %u da serie de fibonacci eh: %u", n, fib(n));
+    printf("\n1.E)O numero %d eh primo?: %d", a, primo(a, a-1)); 
     printf("\n1.F)Ordem decrescente: %d", n);
     decrescente(n); 
     printf("\n1.G)Resto : %d", resto(a, b));
     printf("\n1.H)O somatorio de i*i, com i variando de 1 ate 'b' eh: %d", form(b));
     printf("\n1.I)O mmc de %d e %d eh: %d", a, b, mmc(a, b));
     printf("\n1.J)O resultado da divisao inteira de %d e %d eh: %d", b, n, divisao(b, n));
-    printf("\n1.L)A raiz quadrada de %f eh: %f", c, raiz(c, d));
+    printf("\n1.L)A raiz quadrada de %.3f eh: %.3f", c, raiz(c, d));
     printf("\n1.M)O somatorio de 'n' eh: %d", dig(n));
     printf("\n1.N)O numero %d elevado a %d eh: %d", b, n, expoente(b, n));
     printf("\n1.O)Ordem crescente:");
